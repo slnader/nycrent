@@ -11,3 +11,5 @@ to change the projection to WGS84 and convert to kml format, and uploaded to a s
 Google Fusion Table here: https://www.google.com/fusiontables/DataSource?docid=1B7ANXGR0ITFnXMto3xI9oXx3hbVjzok-GgB51Hs.
 
 The .html file pulls from the two Google Fusion tables using the Maps API to create the visualization. 
+
+To get the map to display, insert your API key in the src URL (see https://developers.google.com/maps/documentation/javascript/tutorial#api_key).

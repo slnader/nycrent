@@ -11,7 +11,7 @@
 	  #legendentry { hue:"#DAA520";saturation:-50;}
     </style>
     <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfIoU98wFZz7PwZEkq1AzUL8HBDWAvg7A&sensor=false">
+      src="https://maps.googleapis.com/maps/api/js?key=yourapikey&sensor=false">
     </script>
     <script type="text/javascript">
 
@@ -37,7 +37,7 @@ function initialize() {
 		  ]
 		}
 	  ];
-	   var newYork = new google.maps.LatLng(40.7204, -73.8807);
+		var newYork = new google.maps.LatLng(40.7204, -73.8807);
         var map = new google.maps.Map(document.getElementById('map-canvas'), {
 		center: newYork,
 		zoom: 11,

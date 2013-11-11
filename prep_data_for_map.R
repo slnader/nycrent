@@ -1,4 +1,4 @@
-setwd('C:/Users/Sandy/Documents/Maps/nycrent')
+setwd('your working directory')
 
 #Load required packages
 library(sp)
