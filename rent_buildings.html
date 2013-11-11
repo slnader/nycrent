@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #heading {height:25px;width:650px;text-align:center;}
+	  #map-canvas {height:700px;width:650px;float:left;}
+	  #legend { height:90px; width:100%; background: white; padding: 10px;text-align:left;}
+	  #legendentry { hue:"#DAA520";saturation:-50;}
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfIoU98wFZz7PwZEkq1AzUL8HBDWAvg7A&sensor=false">
+    </script>
+    <script type="text/javascript">
+
+function initialize() {
+	  var style_array = [
+		{
+		  stylers: [
+			{ hue: "#DAA520" },
+			{ saturation: -50 }
+		  ]
+		},{
+		  featureType: "road",
+		  elementType: "geometry",
+		  stylers: [
+			{ lightness: 100 },
+			{ visibility: "simplified" }
+		  ]
+		},{
+		  featureType: "road",
+		  elementType: "labels",
+		  stylers: [
+			{ visibility: "off" }
+		  ]
+		}
+	  ];
+	   var newYork = new google.maps.LatLng(40.7204, -73.8807);
+        var map = new google.maps.Map(document.getElementById('map-canvas'), {
+		center: newYork,
+		zoom: 11,
+		mapTypeId: 'roadmap',
+		styles: style_array});
+	  
+	 layer1 = new google.maps.FusionTablesLayer({
+		  map: map,
+		  query: {
+			select: 'geometry',
+			from: '1oDXK4PgSAusMd7buy6bPYKbzBNiXdRxAEeZfDAg'
+      },
+	  options: {
+		templateId: 2
+	  },
+      styles: [
+		{
+		polygonOptions: {
+			fillColor: '#D1D1D1',
+			}
+		}, 
+		{
+		  where: 'HD01_VD01 > 0 and HD01_VD01<28',
+		  polygonOptions: {
+			fillColor: '#008B8B'
+		  }
+		},
+		{
+		  where: 'HD01_VD01 >=28 and HD01_VD01<30',
+		  polygonOptions: {
+			fillColor: '#8FD8D8'
+		  }
+		},
+		{
+		  where: 'HD01_VD01 >=30 and HD01_VD01<34',
+		  polygonOptions: {
+			fillColor: '#DB2929'
+		  }
+		},
+		{
+		  where: 'HD01_VD01 >=34.00',
+		  polygonOptions: {
+			fillColor: '#8B1A1A'
+		  }
+		}
+	]
+	
+   });
+   
+   	layer2 = new google.maps.FusionTablesLayer({
+      map: map,
+	  suppressInfoWindows: true,
+	  query: {
+        select: "geometry",
+        from: "1B7ANXGR0ITFnXMto3xI9oXx3hbVjzok-GgB51Hs",
+      },
+      options: {
+        styleId: 2,
+        templateId: 2
+      }
+    });
+
+	layer1.setMap(map);
+		  
+    layer2.setMap(map);	
+		  
+	map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(
+		document.getElementById('legend'));
+	
+  }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+	<div id="heading"/>
+	<h3>NYC zip codes by percent of household income spent on rent
+	and locations of rent-stabilized buildings</h3>
+	<div>
+    <div id="map-canvas"/>
+    </div>
+	<div id="legend">
+	<table>
+	<tr>
+		<td><div id="legendentry" style="width:20px;height:10px;border:1px;background-color:#008B8B;float:left;"></div></td>
+		<td>Median rent is less than 28% of household income</td>
+		<td><div style="width:20px;height:10px;border:1px;background-color:#DB2929;float:left;"></div></td>
+		<td>Median rent is between 30 and 34% of household income</td>
+	</tr>
+	<tr>
+		<td><div style="width:20px;height:10px;border:1px;background-color:#8FD8D8;float:left;"></div></td>
+		<td>Median rent is between 28 and 30% of household income</td>
+		<td><div style="width:20px;height:10px;border:1px;background-color:#8B1A1A;float:left;"></div></td>
+		<td>Median rent is more than 34% of household income</td>
+	</tr>
+	<tr>
+		<td><div style="width:10px;height:10px;border:1px;background-color:#999999;float:left;"></div></td>
+		<td>Block has 1 rent-stabilized building</td>
+		<td><div style="width:10px;height:10px;border:1px;background-color:#666666;float:left;"></div></td>
+		<td>Block has 2 rent-stabilized buildings</td>
+	</tr>
+	<tr>
+		<td><div style="width:10px;height:10px;border:1px;background-color:#444444;float:left;"></div></td>
+		<td>Block has 3-6 rent-stabilized buildings</td>
+		<td><div style="width:10px;height:10px;border:1px;background-color:#000000;float:left;"></div></td>
+		<td>Block has 7 or more rent-stabilized buildings</td>
+	</tr>
+	</table>
+	</div>
+  </body>
+</html>

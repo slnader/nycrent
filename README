@@ -1,0 +1,13 @@
+README file for NYC Rent Statistics Map
+
+This repository contains the source data and code to create the map in the file
+rent_buildings.html.
+
+To recreate the map, first run the R code in prep_data_for_map.R. This will 
+produce a file called nycGP.kml, which is uploaded to this Google Fusion Table:
+https://www.google.com/fusiontables/DataSource?docid=1oDXK4PgSAusMd7buy6bPYKbzBNiXdRxAEeZfDAg.
+It will also produce a file called rent.shp, which I loaded into the open source program QGIS (www.qgis.org)
+to change the projection to WGS84 and convert to kml format, and uploaded to a second 
+Google Fusion Table here: https://www.google.com/fusiontables/DataSource?docid=1B7ANXGR0ITFnXMto3xI9oXx3hbVjzok-GgB51Hs.
+
+The .html file pulls from the two Google Fusion tables using the Maps API to create the visualization. 
